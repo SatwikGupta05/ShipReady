@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
+import { runAudit } from './runner';
 
 // =============================================
 // Color helpers
@@ -43,24 +44,24 @@ program
       console.log(`  ${dim('═'.repeat(50))}`);
       console.log('');
 
-      // Placeholder — audit execution will be wired up in a future commit
-      console.log(`  ${yellow('⚙')}  Loading configuration...`);
-      console.log(`  ${yellow('⚙')}  Detecting workspace...`);
-      console.log(`  ${yellow('⚙')}  Running checks...`);
+      // Run the audit
+      const summary = await runAudit({
+        dir: options.dir,
+        configPath: options.config,
+        format: options.json ? 'json' : options.format,
+        strict: !!options.strict,
+      });
+
+      // Basic summary output
+      const passText = green(`✓ ${summary.passed} passed`);
+      const failText = red(`✗ ${summary.failed} failed`);
+      const warnText = yellow(`⚠ ${summary.warnings} warned`);
+      const skipText = dim(`? ${summary.skipped} skipped`);
+      console.log(`  ${passText}  ${failText}  ${warnText}  ${skipText}  ${dim(`(${summary.durationMs}ms)`)}`);
+      console.log(`  Risk Score: ${bold(String(summary.riskScore))}/10`);
       console.log('');
 
-      // Summary placeholder
-      const passText = green('✓ 0 passed');
-      const failText = red('✗ 0 failed');
-      const warnText = yellow('⚠ 0 warned');
-      const skipText = dim('? 0 skipped');
-      console.log(`  ${passText}  ${failText}  ${warnText}  ${skipText}  ${dim('(0ms)')}`);
-      console.log('');
-
-      console.log(`  ${dim('Audit engine coming soon — check back for the next commit!')}`);
-      console.log('');
-
-      process.exit(0);
+      process.exit(summary.failed > 0 ? 1 : 0);
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       console.error(`\n  ${red('❌ Error:')} ${message}\n`);
