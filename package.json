@@ -1,0 +1,31 @@
+{
+  "name": "shipready",
+  "version": "0.1.0",
+  "description": "Catch production bugs before they catch you - Production Security & Readiness Audit Tool",
+  "main": "dist/index.js",
+  "bin": {
+    "shipready": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "keywords": [
+    "security",
+    "audit",
+    "production",
+    "cli",
+    "scanning"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.9.1",
+    "jest": "^30.4.2",
+    "ts-jest": "^29.4.11",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {}
+}
