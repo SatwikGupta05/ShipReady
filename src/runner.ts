@@ -6,12 +6,14 @@ import { detectWorkspaces } from './workspace';
 import { loadConfig } from './config';
 import { calculateRiskScore } from './utils/scoring';
 import { walkFiles } from './utils/files';
+import { runFixer } from './fixer';
 
 export interface AuditOptions {
   dir?: string;
   configPath?: string;
   format?: 'human' | 'json' | 'html';
   strict?: boolean;
+  fix?: boolean;
   /** Called as each check completes — useful for progress displays */
   onProgress?: (completed: number, total: number, checkName: string, status: string) => void;
 }
@@ -138,6 +140,21 @@ export async function runAudit(options: AuditOptions = {}): Promise<AuditSummary
     timestamp: new Date().toISOString(),
     durationMs: Date.now() - startTime,
   };
+
+  // 11. Run auto-fix if requested
+  if (options.fix) {
+    const fixerContext: AuditContext = {
+      rootDir,
+      config,
+      packages,
+      files,
+      language,
+    };
+    const fixResults = await runFixer(results, fixerContext);
+    const fixed = fixResults.filter(r => r.success).length;
+    const failed = fixResults.filter(r => !r.success).length;
+    console.log(`\n  🔧 Auto-Fix: ${fixed} fixed, ${failed} unfixable`);
+  }
 
   return summary;
 }

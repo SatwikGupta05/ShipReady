@@ -50,6 +50,7 @@ program
         configPath: options.config,
         format: options.json ? 'json' : options.format,
         strict: !!options.strict,
+        fix: !!options.fix,
       });
 
       // Basic summary output
