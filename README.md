@@ -2,10 +2,9 @@
   <h1>🚀 ShipReady</h1>
   <p><strong>Catch production bugs before they catch you.</strong></p>
   
-  [![npm version](https://img.shields.io/npm/v/shipready?style=flat-square)](https://www.npmjs.com/package/shipready)
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
-  [![npm downloads](https://img.shields.io/npm/dm/shipready?style=flat-square)](https://www.npmjs.com/package/shipready)
+  [![GitHub License](https://img.shields.io/github/license/SatwikGupta05/ShipReady?style=flat-square)](https://github.com/SatwikGupta05/ShipReady)
   [![Node.js Version](https://img.shields.io/badge/Node.js-18+-green?style=flat-square)](https://nodejs.org)
+  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/SatwikGupta05/ShipReady/pulls)
   
   <p>
     <a href="#-why-shipready">Why ShipReady</a> •
@@ -594,7 +593,7 @@ A: Currently Node.js only. Python/Go support planned for future releases.
 ### Setup
 
 ```bash
-git clone https://github.com/your-org/shipready.git
+git clone https://github.com/SatwikGupta05/ShipReady.git
 cd shipready
 npm install
 npm test
@@ -655,12 +654,6 @@ export class MyCheck implements ShipReadyCheck {
 
 ---
 
-## 💬 Getting Help
-
-- **🐛 Report a Bug** — [GitHub Issues](https://github.com/your-org/shipready/issues)
-- **💡 Feature Request** — [GitHub Discussions](https://github.com/your-org/shipready/discussions)
-
----
 
 ## 🤝 Contributing
 
@@ -693,7 +686,6 @@ MIT © 2026 ShipReady Contributors
 <div align="center">
   <sub>Built with ❤️ for safer, faster deployments</sub>
   <p>
-    <a href="https://github.com/your-org/shipready">GitHub</a> •
-    <a href="https://www.npmjs.com/package/shipready">npm</a>
+    <a href="https://github.com/SatwikGupta05/ShipReady">GitHub</a>
   </p>
 </div>
