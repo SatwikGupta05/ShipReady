@@ -1,10 +1,29 @@
 import { ShipReadyCheck } from '../types';
+import { SecretsCheck } from './secrets';
+import { CorsCheck } from './cors';
+import { AuthCheck } from './auth';
+import { SqlInjectionCheck } from './sqlInjection';
+import { SessionCheck } from './session';
+import { FileUploadCheck } from './fileUpload';
+import { ValidationCheck } from './validation';
+import { SanitizationCheck } from './sanitization';
+import { HttpsCheck } from './https';
+import { RlsCheck } from './rls';
+import { DockerCheck } from './docker';
+import { EnvCheck } from './env';
+import { RateLimitCheck } from './rateLimit';
+import { ErrorsCheck } from './errors';
+import { LoggingCheck } from './logging';
+import { DependencyCheck } from './dependencyCheck';
+import { CachingCheck } from './caching';
+import { LoadBalancerCheck } from './loadBalancer';
+import { BackupCheck } from './backup';
+import { CiCdCheck } from './cicd';
+import { MonorepoCheck } from './monorepo';
 
 /**
  * Registry of all available checks.
- * Checks are progressively added in upcoming commits.
  */
-
 const checkRegistry = new Map<string, ShipReadyCheck>();
 
 /**
@@ -45,12 +64,28 @@ export function getEnabledChecks(
 }
 
 /**
- * Initialize the check registry.
- * Check implementations will be registered in upcoming commits
- * as they are added to the project.
+ * Initialize the check registry with all available checks.
  */
 export function initializeChecks(): void {
-  // Future check registrations will go here:
-  // e.g. registerCheck(new SecretsCheck());
-  // e.g. registerCheck(new CorsCheck());
+  registerCheck(new SecretsCheck());
+  registerCheck(new CorsCheck());
+  registerCheck(new AuthCheck());
+  registerCheck(new SqlInjectionCheck());
+  registerCheck(new SessionCheck());
+  registerCheck(new FileUploadCheck());
+  registerCheck(new ValidationCheck());
+  registerCheck(new SanitizationCheck());
+  registerCheck(new HttpsCheck());
+  registerCheck(new RlsCheck());
+  registerCheck(new DockerCheck());
+  registerCheck(new EnvCheck());
+  registerCheck(new RateLimitCheck());
+  registerCheck(new ErrorsCheck());
+  registerCheck(new LoggingCheck());
+  registerCheck(new DependencyCheck());
+  registerCheck(new CachingCheck());
+  registerCheck(new LoadBalancerCheck());
+  registerCheck(new BackupCheck());
+  registerCheck(new CiCdCheck());
+  registerCheck(new MonorepoCheck());
 }
